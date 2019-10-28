@@ -1,0 +1,6 @@
+<div class="paging mt30">
+总共{$page_count}页，当前第{$pg}页 | 页数：
+{foreach from=$page_arr item=page}
+<a href="{$url}{$page.value}" class="pagingBtn {if $pg eq $page.value}active {/if}" >{$page.name}</a>
+{/foreach}
+</div>

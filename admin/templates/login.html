@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="renderer" content="webkit">
+	<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<title>管理员登陆</title>
+	<link href="templates/css/common.css" media="all" rev="stylesheet" rel="stylesheet" type="text/css" />
+	<link href="templates/css/home.css" media="all" rev="stylesheet" rel="stylesheet" type="text/css" />
+	<link href="templates/css/iconfont.css" media="all" rev="stylesheet" rel="stylesheet" type="text/css" />
+	<link href="templates/css/alert.css" media="all" rev="stylesheet" rel="stylesheet" type="text/css" />
+	<script src="../includes/js/jquery.js" type="text/javascript"></script>
+	<script src="../includes/js/web.js" type="text/javascript"></script>
+	<script src="../includes/js/alert.js" type="text/javascript"></script>
+</head>
+
+<body class="body">
+<div class="head">
+	<div class="k">
+		<div class="headTop">
+			<h1 class="webTitle">蓝色航线博客系统管理后台</h1>
+		</div>
+	</div>
+</div>
+<form action="admin.php?act=login" method="post">
+
+<div class="loginbody">
+	<div class="loginMain">
+		<div class="loginHead">
+			<h2 class="loginTitle">后 台 登 录</h2>
+		</div>
+		<div class="loginContent">
+			<div class="loginFromRow">
+				<input type="text" name="username" class="inputText" placeholder="用户名" />
+			</div>
+			<div class="loginFromRow">
+				<input type="password" name="password" class="inputText" placeholder="密码" />
+			</div>
+			<div class="loginFromRow">
+				<input name="safe_url" type="hidden" value="{$safe_url}" />
+				<input name="" class="btn btnBlock b_a" type="submit" value="登陆"  />
+			</div>
+			<div class="tc f12 c_9">
+				还没有账号，<a href="{$domain}/user.php?act=reg" class="c_blue">立即注册</a>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+<div class="foot">
+	©2013-2019 Powered by <a href="https://blueblog.lansehangxian.com/" target="_blank">蓝色航线博客系统 v1.0</a>
+</div>
+<!-- {literal} -->
+<script>
+    $(function(){
+        var w_h = $(window).height()-184;
+        $('.loginbody').css({'minHeight':w_h})
+    });
+    $(document).ready(function () {
+        var w_h = $(window).height()-184,
+            b_h = $('.loginMain').height(),
+            m_t = (w_h - b_h)/2;
+        if(m_t<20){
+            m_t =20
+        }
+        $('.loginbody').css({'paddingTop':m_t})
+    });
+</script>
+<!-- {/literal} -->
+</body>
+</html>

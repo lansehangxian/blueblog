@@ -1,0 +1,42 @@
+{include file="header.html"}
+
+<form action="admin.php?act={$type}" method="post">
+
+  <div class="p30">
+    <div class="box">
+      <div class="boxHead">
+        <h2>友情链接列表</h2>
+      </div>
+      <div class="boxMain">
+        <div class="table">
+          <table width="100%">
+            <thead>
+
+            <tr>
+    <th>友情链接名称</th>
+    <th>url</th>
+    <th>排序</th>
+    <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+  {foreach from=$friend_link_list item=link}
+  <tr>
+    <td>{$link.title}</td>
+    <td>{$link.url}</td>
+    <td><input name="sort[{$link.link_id}][]" type="text" value="{$link.sort}" size="5" /></td>
+    <td><a href="admin.php?act=edit_friend_link&id={$link.link_id}" >编辑</a> | <a href="admin.php?act=del_friend_link&id={$link.link_id}" >删除</a> </td>
+  </tr>
+  {/foreach}
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+    {include file="page.html"}
+  </div>
+  </div>
+{include file="footer.html"}

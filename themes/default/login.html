@@ -1,0 +1,73 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <title>用户登录</title>
+    <link href="{$domain}{$templates_dir}css/common.css" rel="stylesheet">
+    <link href="{$domain}{$templates_dir}css/home.css" rel="stylesheet">
+    <link href="{$domain}{$templates_dir}css/iconfont.css" rel="stylesheet">
+    <script src="{$domain}includes/js/jquery.js"></script>
+</head>
+<body>
+
+<div class="head">
+    <div class="k">
+        <div class="headTop">
+            <a href="{$domain}"><h1 class="webTitle">{$blog_name}</h1></a>
+        </div>
+    </div>
+</div>
+
+
+<div class="loginbody">
+    <div class="loginMain">
+        <div class="loginHead">
+            <a href="{$domain}" class="loginHeadTool">返回首页</a>
+            <h2 class="loginTitle">用 户 登 录</h2>
+        </div>
+        <div class="loginContent">
+            <form action="user.php?act=act_login" method="post"  name="form1" id="post_form">
+
+            <div class="loginFromRow">
+                <input  name="name" type="text" id="name" class="inputText" placeholder="用户名" />
+            </div>
+            <div class="loginFromRow">
+                <input name="password" type="password" id="password" class="inputText" placeholder="密码" />
+            </div>
+            <div class="loginFromRow">
+                <input class="btn btnBlock b_a" type="submit" name="button" id="button" value="登录" />
+            </div>
+            <div class="tc f12 c_9">
+                还没有账号，<a href="{$domain}/user.php?act=reg" class="c_blue">立即注册</a>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="foot">
+    ©2009-2019 Powered by <a href="https://blueblog.lansehangxian.com/" target="_blank">蓝色航线博客系统 v1.0</a>
+</div>
+<!-- {literal} -->
+<script>
+    $(function(){
+        var w_h = $(window).height()-184;
+        $('.loginbody').css({'minHeight':w_h})
+    });
+    $(document).ready(function () {
+        var w_h = $(window).height()-184,
+            b_h = $('.loginMain').height(),
+            m_t = (w_h - b_h)/2;
+        if(m_t<20){
+            m_t =20
+        }
+        $('.loginbody').css({'paddingTop':m_t})
+    });
+</script>
+<!-- {/literal} -->
+</body>
+</html>

@@ -1,0 +1,35 @@
+{include file="header.html"}
+<div class="p30">
+  <div class="box">
+    <div class="boxHead">
+      <h2>会员分组</h2>
+    </div>
+    <div class="boxMain">
+      <div class="table">
+        <table width="100%">
+          <thead>
+
+          <tr>
+            <th>分组名字</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+
+  {foreach from=$group_list item=group}
+  <tr>
+    <td><a  href="admin.php?act=edit_group&id={$group.group_id}">{$group.group_name}</a></td>
+    <td><a href="admin.php?act=edit_group&id={$group.group_id}" >编辑</a> | <a href="admin.php?act=del_group&id={$group.group_id}" >删除</a> </td>
+  </tr>
+  {/foreach}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+  {include file="page.html"}
+</div>
+</div>
+{include file="footer.html"}

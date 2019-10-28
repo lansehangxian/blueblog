@@ -1,0 +1,166 @@
+{include file="header.html"}
+
+<form action="admin.php?act={$type}" method="post">
+  <div class="p30">
+    <div class="box">
+      <div class="boxHead">
+        <h2>博客设置</h2>
+      </div>
+
+      <div class="boxMain">
+<form action="admin.php?act={$type}" method="post">
+  <ul class="fromRow fromRowLine">
+    <li class="left">博客名字</li>
+    <li class="right"><input name="blog_name" type="text" class="inputText inputBlock"  id="blog_name" value="{$blog_name}" size="50" /></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">博客描述</li>
+    <li class="right"><textarea name="blog_desc" class="inputBlock textarea" cols="50" rows="5" id="blog_desc">{$blog_desc}</textarea></li>
+  </ul>
+    <ul class="fromRow fromRowLine">
+    <li class="left">网站通知</li>
+    <li class="right"><textarea name="notice" class="inputBlock textarea" cols="50" rows="5" id="blog_desc">{$notice}</textarea></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">博客地址</li>
+    <li class="right"><input name="domain" type="text" class="inputText inputBlock"  id="domain" value="{$domain}" size="50" /></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">是否开放博客评论</li>
+    <li class="right">开放
+      <input name="open_comment" type="radio" value="0" {if $open_comment eq 0}checked{/if} />
+      关闭
+      <input name="open_comment" type="radio" value="1" {if $open_comment eq 1}checked{/if} /></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">博客评论是否需要审核</li>
+    <li class="right">开放
+      <input name="comment_safe" type="radio" value="0" {if $comment_safe eq 0}checked{/if} />
+      审核
+      <input name="comment_safe" type="radio" value="1" {if $comment_safe eq 1}checked{/if} /></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">评论排序方式</li>
+    <li class="right">最新评论排序
+      <input name="comment_sort" type="radio" value="0" {if $comment_sort eq 0}checked{/if} />
+      最早评论排序
+      <input name="comment_sort" type="radio" value="1" {if $comment_sort eq 1}checked{/if} /></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">是否开放注册</li>
+    <li class="right">开放
+      <input name="is_reg" type="radio" value="0" {if $is_reg eq 0}checked{/if} />
+      关闭
+      <input name="is_reg" type="radio" value="1" {if $is_reg eq 1}checked{/if} /></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">伪静态设置</li>
+    <li class="right">关闭
+      <input name="rewrite" type="radio" value="0" {if $rewrite eq 0}checked{/if} />
+      开启
+      <input name="rewrite" type="radio" value="1" {if $rewrite eq 1}checked{/if} />
+      （Apache用户请将根目录下的htaccess.txt改成.htaccess,Nginx和IIS设置规则请参考安装文档）
+      </li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">伪静态下Tag显示设置</li>
+    <li class="right">
+      <input name="tag_type" type="radio" value="0" {if $tag_type eq 0}checked{/if} />
+      类似/tag/中文词/
+      <input name="tag_type" type="radio" value="1" {if $tag_type eq 1}checked{/if} />
+      类似/tag/%25E7%25/（如果您网站tag地址显示错误，请选择这种方式）
+      </li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">Tag分隔符</li>
+    <li class="right">
+      <input name="tag_explode_type" type="radio" value="0" {if $tag_explode_type eq 0}checked{/if} />
+      空格或者逗号
+      <input name="tag_explode_type" type="radio" value="1" {if $tag_explode_type eq 1}checked{/if} />
+      逗号
+      </li>
+  </ul>    
+  <ul class="fromRow fromRowLine">
+    <li class="left">缓存设置</li>
+    <li class="right">关闭
+      <input name="is_cache" type="radio" value="0" {if $is_cache eq 0}checked{/if}>
+      开启
+      <input name="is_cache" type="radio" value="1" {if $is_cache eq 1}checked{/if}>
+      （开启缓存后网站速度将飞快，访问速度接近于访问静态页面，统计数据有所延缓）
+      </li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">缓存有效时间</li>
+    <li class="right"><input name="cache_lifetime" type="text" class="inputText inputBlock"  id="cache_lifetime" value="{$cache_lifetime}" />
+      （以小时为单位，开启缓存后此设置有效）
+      </li>
+  </ul>
+    <ul class="fromRow fromRowLine">
+    <li class="left">日志列表中描述显示设置</li>
+    <li class="right">
+      <input name="desc_type" type="radio" value="0" {if $desc_type eq 0}checked{/if} />
+       直接显示默认的日志描述
+      <input name="desc_type" type="radio" value="1" {if $desc_type eq 1}checked{/if} />
+       截取指定长度（256个字节）
+      <input name="desc_type" type="radio" value="2" {if $desc_type eq 2}checked{/if} />
+       显示全文
+      </li>
+
+  <ul class="fromRow fromRowLine">
+    <li class="left">每页显示数量</li>
+    <li class="right"><input name="page_size" type="text" class="inputText inputBlock"  id="page_size" value="{$page_size}" /></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">页数大小</li>
+    <li class="right"><input name="pager_size" type="text" class="inputText inputBlock"  id="pager_size" value="{$pager_size}" /></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">统计代码</li>
+    <li class="right"><textarea class="inputBlock textarea"  name="tj" id="tj" cols="50" rows="5" />{$tj}</textarea></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">网站备案号</li>
+    <li class="right"><input name="icp_no" type="text" class="inputText inputBlock"  id="icp_no" value="{$icp_no}" /></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">&nbsp;</li>
+    <li class="right"><input type="submit" name="button"   class="btn bC b1" id="button" value="提交" /></li>
+  </ul>
+  <ul class="fromRow fromRowLine">
+    <li class="left">&nbsp;</li>
+    <li class="right">&nbsp;</li>
+  </ul>
+
+
+</form>
+</div>
+</div>
+</div>
+</div>
+<!-- {literal} -->
+<script language="javascript" type="text/javascript">
+$(document).ready(function() {
+
+	$("#Need_Master_DB").click(function(){
+		for(i=1;i<9;i++)
+		{
+			$("#db"+i).show();
+		}
+	});
+	$("#Cancel_Master_DB").click(function(){
+		for(i=1;i<9;i++)
+		{
+			$("#db"+i).hide();
+		}
+	});
+	$("#Need_Memcache").click(function(){
+		$("#MC1").show();
+		$("#MC2").show();
+	});
+	$("#Cancel_Memcache").click(function(){
+		$("#MC1").hide();
+		$("#MC2").hide();
+	});
+});
+</script><!-- {/literal} -->
+{include file="footer.html"}

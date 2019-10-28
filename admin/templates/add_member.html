@@ -1,0 +1,43 @@
+{include file="header.html"}
+
+<form action="admin.php?act={$type}" method="post">
+  <div class="p30">
+    <div class="box">
+      <div class="boxHead">
+        <h2>添加会员</h2>
+      </div>
+
+      <div class="boxMain">
+<form action="admin.php?act={$type}" method="post">
+    <ul class="fromRow fromRowLine">
+      <li class="left">会员名字</li>
+      <li class="right"><input type="text" class="inputText inputBlock" name="user_name" id="user_name" value="{$member.user_name}" /></li>
+    </ul>
+        <ul class="fromRow fromRowLine">
+          <li class="left">会员密码</li>
+          <li class="right"><input type="text" class="inputText inputBlock" name="password" id="password" />{if $member.password}如果不修改密码，请保留其为空{/if}</li>
+        </ul>
+        
+        <ul class="fromRow fromRowLine">
+      <li class="left">选择分组</li>
+      <li class="right">
+      <select name="group"  class="inputBlock">
+      {foreach from=$group_list item=group}
+        <option value="{$group.group_id}" {if $member.group_id eq $group.group_id }selected="selected"{/if} >{$group.group_name}</option>
+      {/foreach}
+      
+      </select></li>
+        </ul>
+    <ul class="fromRow fromRowLine">
+      <li class="left">会员email</li>
+      <li class="right"><input class="inputText inputBlock" name="email" type="text" id="email" value="{$member.email}" /></li>
+    </ul>
+    
+    <ul class="fromRow fromRowLine">
+      <li class="left">&nbsp;</li>
+      <li class="right"><input type="submit" class="btn bC b1"  name="button" id="button" value="提交" /></li>
+    </ul>
+  </table>
+</form>
+</p>
+{include file="footer.html"}

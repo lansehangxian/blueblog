@@ -1,0 +1,243 @@
+{include file="header.html"}
+
+
+
+<form action="admin.php?act={$type}" method="post"id="blog_form">
+
+    <div class="p30">
+        <div class="box">
+            <div class="boxHead">
+                <h2>添加博客</h2>
+            </div>
+
+            <div class="boxMain">
+
+                
+
+    <ul class="fromRow fromRowLine">
+      <li class="left">日志名字</li>
+      <li class="right"><input type="text" class="inputText inputBlock" name="title" id="title" value="{$blog.title}" size="50"/></li>
+    </ul>
+        <ul class="fromRow fromRowLine">
+      <li class="left">选择分类</li>
+      <li class="right">
+      <select name="cat" class="inputBlock">
+      {foreach from=$cat_list item=cat}
+        <option value="{$cat.cat_id}" {if $blog.cat_id eq $cat.cat_id }selected="selected"{/if} >{$cat.cat_name}</option>
+        {foreach from=$cat.children item=children}
+     		 <option value="{$children.cat_id}" {if $blog.cat_id eq $children.cat_id }selected="selected"{/if} >&nbsp;&nbsp;{$children.cat_name}</option>
+      	{/foreach}
+      {/foreach}
+      
+      </select>
+      </li>
+        </ul>
+
+
+                <ul class="fromRow fromRowLine">
+                    <li class="left">日志内容</li>
+                    <li class="right">
+                        <script src="../includes/tinymce/tinymce.min.js"></script>
+                        <!-- {literal} -->
+                        <script>
+                            tinymce.init({
+                                selector:'#editor',
+                                language: 'zh_CN',
+                                height : 500,  statusbar: false,
+                                plugins: 'print preview fullpage powerpaste searchreplace autolink directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount tinymcespellchecker a11ychecker imagetools textpattern help formatpainter permanentpen pageembed tinycomments mentions linkchecker',
+
+                                toolbar: 'styleselect table  link media image  bold italic alignleft aligncenter alignright bullist numlist outdent indent code fullscreen preview ',
+
+                                images_upload_url: 'admin.php?act=upload&type=img',
+                                importcss_append: true,
+
+                                images_upload_handler: function (blobInfo, success, failure) {
+                                    var xhr, formData;
+                                    xhr = new XMLHttpRequest();
+                                    xhr.withCredentials = false;
+                                    xhr.open('POST', 'admin.php?act=upload&type=img');
+                                    xhr.onload = function() {
+                                        var json;
+                                        if (xhr.status < 200 || xhr.status >= 300) {
+                                            failure('HTTP Error: ' + xhr.status);
+                                            return;
+                                        }
+                                        json = JSON.parse(xhr.responseText);
+                                        if (!json || typeof json.location != 'string') {
+                                            failure('Invalid JSON: ' + xhr.responseText);
+                                            return;
+                                        }
+                                        success(json.location);
+                                    };
+                                    formData = new FormData();
+                                    formData.append('file', blobInfo.blob());
+                                    xhr.send(formData);
+                                }
+                            });
+                        </script>
+                        <!-- {/literal} -->
+                        <textarea id="editor">{$blog.content}</textarea>
+                    </li>
+                </ul>
+                <ul class="fromRow fromRowLine">
+                    <li class="left">设置url</li>
+                    <li class="right">
+                        <p>
+                            {if $rewrite}
+                            <input type="radio" name="url_type" value="1" id="set_url" {if $url_type eq 1}checked="checked" {/if} />
+                            简单重写 (类似{$u}blog/1.html)
+                            <br />
+
+                            <input type="radio" name="url_type" value="2" id="set_url" {if $url_type != 1}checked="checked" {/if} />
+                            自定义
+                            {$u}blog/<input name="url" type="text" class="inputText inputBlock" value="{if $url_type != 1}{$url_type}{/if}" size="40" />
+                            <br />
+                            {else}
+                            <input type="hidden" name="url_type" value="{$url_type}" id="set_url" />
+                            网站没有开启rewrite，如果需要使用伪静态优化请到博客设置中开启
+                            {/if}
+                        </p>
+                    </li>
+                </ul>
+    <!--<ul class="fromRow fromRowLine">
+      <li class="left">日志内容</li>
+      <li class="right">
+	<div id="auto_copy" style="font-size: 13px;font-family: verdana,arial; color:#FF0000;"></div>
+
+          <script type="text/javascript" src="../includes/ueditor/ueditor.config.js"></script>
+          <script type="text/javascript" src="../includes/ueditor/ueditor.all.js"></script>
+          <script id="editor" name="editor" type="text/plain">{$blog.content}</script>
+          <script type="text/javascript">
+              var ue = UE.getEditor('editor');
+          </script>
+      </li>
+    </ul>-->
+    <ul class="fromRow fromRowLine">
+      <li class="left">评论设置</li>
+      <li class="right">开放
+      <input name="blog_comment" type="radio" value="0" {if $blog.open_type eq 0}checked{/if} />
+      关闭
+      <input name="blog_comment" type="radio" value="1" {if $blog.open_type eq 1}checked{/if}/></li>
+    </ul>
+    <ul class="fromRow fromRowLine">
+      <li class="left">日志置顶</li>
+      <li class="right">不置顶
+      <input name="is_top" type="radio" value="0" {if $blog.is_top eq 0}checked{/if} />
+      置顶
+      <input name="is_top" type="radio" value="1" {if $blog.is_top eq 1}checked{/if}/></li>
+    </ul>
+    <ul class="fromRow fromRowLine">
+      <li class="left">Tags</li>
+      <li class="right">
+      <input name="tags" type="text" class="inputText inputBlock" value="{$tags}" size="40" />（默认用空格或者逗号分隔每个tag）</li>
+    </ul>
+    <ul class="fromRow fromRowLine">
+      <li class="left">权限控制</li>
+      <li class="right"><p>查看密码：
+          <input type="text" class="inputText inputBlock" name="password" id="password" value="{$blog.password}" />
+（如果不需要设置查看密码，请保留为空）</p>
+      <p>允许查看的用户组（默认为所有用户组）：<br />
+      <!--{foreach from=$group_list item=group}-->
+          <input name="group[]" type="checkbox" value="{$group.group_id}" {if $group.flag eq 1}checked="checked"{/if} />
+          {$group.group_name}
+        <br />
+      <!--{/foreach}-->
+      </p>
+
+</li>
+    </ul>
+    <ul class="fromRow fromRowLine">
+      <li class="left">&nbsp;</li>
+      <li class="right"><input type="hidden" name="id" id="id" value="{$id}" /><input type="submit" name="button" class="btn bC b1" id="button" value="提交" /></li>
+    </ul>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+    <!-- {literal} -->
+
+    var editor=$('#editor').xheditor({localUrlTest:/^https?:\/\/[^\/]*?(blueblog\.lansehangxian\.com)\//i,
+        remoteImgSaveUrl:'admin.php?act=upload&type=img&remote_copy=1',
+        shortcuts:{'ctrl+enter':submitForm},
+        tools:'Cut,Copy,Paste,Pastetext,SelectAll,Removeformat,|,Fontface,FontSize,Bold,FontColor,BackColor,|,Img,Flash,Media,Link,Emot,Unlink,|,Code,Preview,btnCode,Fullscreen,Source',
+        skin:'default',
+        upLinkUrl:'admin.php?act=upload&type=file',
+        upImgUrl:'admin.php?act=upload&type=img',
+        upFlashUrl:'admin.php?act=upload&type=flash',
+        upFlashExt:'swf,flv',
+        upMediaUrl:'admin.php?act=upload&type=file'});
+
+    //var editor=$('#editor').xheditor({tools:'simple',skin:'nostyle'});
+
+    function submitForm(){$('#blog_form').submit();}
+
+
+    var sHtml;
+    function auto_copy()
+    {
+        //$('#auto_copy').html('正在自动保存到草稿箱');
+        var sHtml=editor.getSource();
+        var desc=description.getSource();
+        var ss=$('#title').val();
+        var id=$('#id').val();
+        p='content='+sHtml+'&title='+ss+'&desc='+desc+'&id='+id;
+        $('#auto_copy').html('正在自动保存到草稿箱');
+        $.ajax({url:'admin.php?act=auto_save',type:'post', dataType:'json',data:p,success:show_data});
+    }
+    setInterval("auto_copy();", 50000);
+
+
+
+    function show_data(data)
+    {
+        if(data.error!='no')
+        {
+            $('#auto_copy').html(data.error);
+        }
+        else
+        {
+            $('#auto_copy').html(data.content);
+        }
+    }
+
+    function get_auto_data()
+    {
+        var id=$('#id').val();
+        p='id='+id;
+        $('#auto_copy').html('数据正在更新中.....');
+        $.ajax({url:'admin.php?act=get_auto_save',type:'post', dataType:'json',data:p,success:update_data});
+    };
+
+    function update_data(data)
+    {
+        editor.setSource(data.content)
+        description.setSource(data.desc)
+        $('#title').val(data.title);
+        $('#auto_copy').html('数据更新成功');
+    }
+
+    $(document).ready(function()
+    {
+        var id=$('#id').val();
+        var p='id='+id;
+        $.ajax({url:'admin.php?act=check_auto_date',type:'post', dataType:'json',data:p,success:show_check_data});
+    })
+
+    function show_check_data(data)
+    {
+
+        if(data!='no')
+        {
+            $('#auto_copy').html(data);
+        }
+    }
+
+    <!-- {/literal} -->
+</script>
+
+
+
+{include file="footer.html"}

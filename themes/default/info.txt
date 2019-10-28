@@ -1,0 +1,7 @@
+模板名字: default
+模板描述: 蓝色航线博客系统官方默认模板
+模板演示地址: http://blueblog.lansehangxian.com/
+版本: 1.0
+作者: lansehangxian
+作者网址: http://www.lansehangxian.com/
+以上信息必填

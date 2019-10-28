@@ -1,0 +1,49 @@
+{include file="header.html"}
+
+<div class="p30">
+  <div class="box">
+    <div class="boxHead">
+      <h2>评论列表</h2>
+    </div>
+    <div class="boxMain">
+      <div class="table">
+        <table width="100%">
+          <thead>
+
+          <tr>
+            <th>评论标号</th>
+            <th>用户名</th>
+            <th>评论日志</th>
+            <th>时间</th>
+            <th>IP</th>
+            <th>状态</th>
+            <th>内容</th>
+            <th>操作</th>
+
+          </tr>
+          </thead>
+          <tbody>
+
+  {foreach from=$comment_list item=comment}
+  <tr>
+    <td>{$comment.comment_id}</td>
+    <td>{$comment.user_name}</td>
+    <td><a  href="../blog.php?id={$comment.blog_id}">{$comment.title}</a></td>
+    <td>{$comment.add_time}</td>
+    <td>{$comment.ip}</td>
+    <td><!--{if $comment.status eq 1}-->隐藏<!--{else}-->显示<!--{/if}--></td>
+    <td><a href="admin.php?act=edit_comment&id={$comment.comment_id}" title="{$comment.content}" >{$comment.short_comment}</a></td>
+    <td><a href="admin.php?act=edit_comment&amp;id={$comment.comment_id}" >编辑</a> | <a href="admin.php?act=del_comment&amp;id={$comment.comment_id}" >删除</a> </td>
+  </tr>
+  {/foreach}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+  {include file="page.html"}
+</div>
+</div>
+{include file="footer.html"}

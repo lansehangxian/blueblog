@@ -1,0 +1,397 @@
+@charset "utf-8";
+/* CSS Document */
+html {
+    font-size: 62.5%; 
+}
+
+body{
+	margin:0;
+	padding:0;
+	font:1.4rem/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;
+	}
+dl,dt,dd,ol,ul,li,header,foot,nav,article,section,mark,time{
+	padding:0;
+	margin:0;
+	vertical-align: middle;
+	}
+article{
+	word-wrap:break-word;
+	}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.tc{
+	text-align: center;
+}
+.tr{
+	text-align: right;
+}
+.tl{
+	text-align: left;
+}
+
+.fl{
+	float:left;
+	}
+.fr{
+	float:right;
+	}
+.line {
+    height: 0;
+    overflow: hidden;
+    border-top-width: 1px;
+    border-top-style: solid;
+    margin: 0;
+    padding: 0;
+}
+img {
+    border: 0 none;
+    height: auto;
+	max-width: 100%;
+    vertical-align: middle;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+div[path] .row,#header,#footer{
+	margin-left:auto;
+	margin-right:auto;
+}
+a{
+	color: #333;
+	text-decoration: none;
+	-webkit-transition:0.2s ease-in 0s;
+	   -o-transition:0.2s ease-in 0s;
+		  transition:0.2s ease-in 0s;
+}
+a:hover{
+	color: #2572af;
+	text-decoration: underline;
+}
+.tran{
+	-webkit-transition:0.2s ease-in 0s;
+	   -o-transition:0.2s ease-in 0s;
+		  transition:0.2s ease-in 0s;
+}
+.underline{
+	text-decoration: underline;
+}
+/* 标题 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 10px 0;
+  font-family: inherit;
+  font-weight: normal;
+   color: inherit;
+  text-rendering: optimizelegibility;
+}
+/* 文字段落 */
+h1{
+	font-size:60px;
+	}
+h2{
+	font-size:36px;
+	}
+h3{
+	font-size:26px;
+	}
+h4{
+	font-size:16px;
+	}
+h5{
+	font-size:14px;
+	}
+h6{
+	font-size:12px;
+	}
+	
+dl,dt,dd,ol,ul,li,header,foot,nav,article,section,mark,time{
+	padding:0;
+	margin:0;
+	vertical-align: middle;
+	}
+p{
+	margin:0 0 10px 0;
+ 	}
+p:last-child{
+	margin-bottom:0;
+	}
+/* 有序、无序、无样式列表 */
+ul,ol{
+	list-style:none;
+	}
+
+/* 标题描述 */
+
+dl{
+	margin-bottom:10px;
+	}
+dl:last-child{
+	margin-bottom:0;
+	}
+dt{
+	font-weight:bold;
+	}
+dt, dd{
+	line-height:20px;
+	}
+dd {
+    margin-left: 10px;
+}
+/* 表单  */
+.radio, .checkbox {
+    min-height: 20px;
+    padding-left: 20px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+.radio input[type="radio"], 
+.checkbox input[type="checkbox"] {
+    float: left;
+    margin-left: -20px;
+}
+input[type="text"],input[type="button"],input[type="tel"]{
+	border-radius: 0;
+	-webkit-appearance: none;
+}
+.inputBlock {
+	width:100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	}
+.textareaBlock {
+	width:100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	resize:none;
+	}
+/* 行内复选框 */
+.radio.inline, .checkbox.inline {
+    display: inline-block;
+    margin-bottom: 0;
+    padding-top: 5px;
+    vertical-align: middle;
+}
+.radio, .checkbox {
+    min-height: 20px;
+    padding-left: 10px;
+}
+
+.boxBlock{
+ 	min-height:1px;
+	margin-left:20px;
+ 	}
+.boxscroll .boxBlock{
+	min-height:20px;
+	}
+.rowPatch{
+	margin-left:-10px;
+	}
+.clearPatch .boxBlock,
+.clearPatch .rowPatch{
+	margin-left:0;
+	}
+.transition{
+	-webkit-transition:  0.2s ease-in 0s;
+	-moz-transition:  0.2s ease-in 0s;
+	-ms-transition:  0.2s ease-in 0s;
+	-o-transition:  0.2s ease-in 0s;
+	transition:  0.2s ease-in 0s;
+	}
+.textInput{
+	padding-left:5px;}
+.pt5{
+	padding-top: 5px;
+}
+.pt10{
+	padding-top: 10px;
+}
+.pt15{
+	padding-top: 15px;
+}
+.p15{
+	padding: 15px;
+}
+.p10{
+	padding: 10px;
+}
+.p20{
+	padding: 20px;
+}
+.p30{
+	padding: 30px;
+}
+.pt30{
+	padding-top: 30px;
+}
+.mt30{
+	margin-top: 30px;
+}
+.mt20{
+	margin-top: 20px;
+}
+.mt10{
+	margin-top: 10px;
+}
+.c_3{
+	color: #333;
+}
+.c_c{
+	color: #ccc;
+}
+.c_6{
+	color: #666;
+}
+.c_9{
+	color: #999;
+}
+.c_blue{
+	color: #2e80b8;
+}
+.c_red{
+	color: red;
+}
+.f12{
+	font-size: 12px;
+}
+.f16{
+	font-size: 16px;
+}
+.f18{
+	font-size: 18px;
+}
+.f24{
+	font-size: 24px;
+}
+.paging{
+	text-align: center;
+}
+.pagingBtn{
+	display: inline-block;
+	margin: 0 2px;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+	font-size: 12px;
+	padding: 0 10px;
+	line-height: 26px;
+	background: -webkit-linear-gradient(#fff, #f6f6f6); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#fff, #f6f6f6); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#fff, #f6f6f6); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#fff, #f6f6f6); /* 标准的语法 */
+	color: #666;
+}
+.pagingBtn:hover{
+	color: #2572af;
+	text-decoration: none;
+}
+.pagingBtn.disabled{
+	cursor: default;
+	opacity: 0.5;
+	color: #999;
+}
+.pagingBtn.disabled:hover{
+	color: #999;
+	text-decoration: none;
+}
+.pagingBtn.active{
+	color: #fff;
+	font-weight: bold;
+	background: #2e80b8;
+	border: 1px solid #2e80b8;
+}
+
+.inputBlock{
+	width: 100%;
+}
+.inputText{ 
+	border: 1px solid #e6e6e6;
+	box-sizing: border-box;
+	padding: 5px;
+	height: 38px;
+	line-height: 28px;
+	outline: none;
+}
+.textarea{
+	border: 1px solid #e6e6e6;
+	box-sizing: border-box;
+	padding: 5px;
+	line-height: 24px;
+	outline: none;
+	resize: none;
+}
+.inputText::-webkit-input-placeholder{
+	color: #ccc;
+}
+select{
+	-webkit-appearance: menulist;
+    box-sizing: border-box;
+    align-items: center;
+    white-space: pre;
+    -webkit-rtl-ordering: logical;
+    color: black;
+    background-color: white;
+	cursor: default;
+	border: 1px solid #e6e6e6;
+	border-radius: 0;
+	height: 38px;
+	line-height: 38px;
+	outline: none
+}
+.checkLable{
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 20px 0 0;
+}
+.checkLable input{
+	margin: -5px 5px 0 0;
+	vertical-align: middle;
+}
+
+table
+{
+	width:100%;
+	border-collapse: collapse;
+	margin: 0 auto;
+	text-align: center;
+	margin: 30px 0 30px 0;
+}
+table td, table th
+{
+	border: 1px solid #cad9ea;
+	color: #666;
+	height: 30px;
+}
+
+table thead th
+{
+	background-color: #CCE8EB;
+	width: 100px;
+}
+
+table tr:nth-child(odd)
+{
+	background: #fff;
+}
+
+table tr:nth-child(even)
+{
+	background: #F5FAFA;
+}

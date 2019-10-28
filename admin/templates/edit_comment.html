@@ -1,0 +1,45 @@
+{include file="header.html"}
+<form action="admin.php?act={$type}" method="post">
+
+<div class="p30">
+    <div class="box">
+        <div class="boxHead">
+            <h2>修改评论</h2>
+        </div>
+
+        <div class="boxMain">
+    <ul class="fromRow fromRowLine">
+      <li class="left">所属文章</li>
+      <td width="720"><a  href="../blog.php?id={$comment.blog_id}">{$comment.title}</a></li>
+    </ul>
+        <ul class="fromRow fromRowLine">
+          <li class="left">评论者名字</li>
+          <li class="left">{$comment.user_name}</li>
+    </ul>
+        
+        <ul class="fromRow fromRowLine">
+          <li class="left">状态</li>
+          <li class="left">
+                <input type="radio" name="status" value="1" id="status_0"  {if $comment.status eq 1} checked="checked"{/if} />
+                隐藏
+                <input type="radio" name="status" value="0" id="status_1" {if $comment.status eq 0} checked="checked"{/if}  />
+                显示</li>
+        </ul>
+    <ul class="fromRow fromRowLine">
+      <li class="left">评论内容</li>
+      <li class="left"><textarea class="textarea" name="content" cols="100" rows="10" id="content">{$comment.content}</textarea></li>
+    </ul>
+    
+    <ul class="fromRow fromRowLine">
+      <li class="left">&nbsp;</li>
+      <li class="left"><input type="submit"  class="btn bC b1"  name="button" id="button" value="提交" /></li>
+    </ul>
+                </table>
+        </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{include file="footer.html"}

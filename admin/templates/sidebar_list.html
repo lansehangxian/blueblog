@@ -1,0 +1,41 @@
+{include file="header.html"}
+<form action="admin.php?act={$type}" method="post">
+  <div class="p30">
+    <div class="box">
+      <div class="boxHead">
+        <h2>边栏插件</h2>
+      </div>
+      <div class="boxMain">
+        <div class="table">
+          <table width="100%">
+            <thead>
+
+            <tr>
+              <th>模块</th>
+              <th>描述</th>
+              <th>排序</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+  {foreach from=$sidebar_list item=sidebar}
+  <tr>
+    <td>{$sidebar.title}</td>
+    <td>{$sidebar.desc}</td>
+    <td><input name="sort[{$sidebar.id}][]" type="text" value="{$sidebar.sort}" size="5" /></td>
+    <td><a href="admin.php?act=edit_sidebar&id={$sidebar.id}" >编辑</a> | <a href="admin.php?act=del_sidebar&id={$sidebar.id}" >删除</a> </td>
+  </tr>
+  {/foreach}
+  <tr>
+    <td colspan="4"><input  class="btn bC b1" type="submit" name="button" id="button" value="修改排序" /></td>
+  </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+  </div>
+{include file="footer.html"}

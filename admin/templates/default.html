@@ -1,0 +1,147 @@
+{include file="header.html"}
+
+  <div class="p30">
+    <div class="box">
+      <div class="boxHead">
+        <h2>博客今日信息</h2>
+      </div>
+
+      <div class="boxMain">
+        <div class="table tableTdLine">
+          <table width="100%">
+            <tbody>
+            <tr>
+              <td class="c_6" width="250">个人信息</td>
+    <td class="c_9">用户名：{$user_name} 组别：{$user_group} 上次登录时间：{$last_time} 上次登录IP：{$last_ip}</td>
+  </tr>
+  <tr>
+    <td class="c_6">今日评论/评论总数</td>
+    <td class="c_9">{$today_comments}/{$comments}</td>
+  </tr>
+    <tr>
+    <td class="c_6">今日注册会员/会员总数</td>
+    <td class="c_9">{$today_users}/{$users_num}</td>
+  </tr>
+
+            <tr>
+              <td class="c_6">蓝色航线腾讯云优惠：</td>
+              <td class="c_9">
+                <a href="https://blueblog.lansehangxian.com/api/url.php?name=qcloudlink" target="_blank"><font color="red">点击成为蓝色航线VIP腾讯云专属客户可享受免费技术咨询，新买续费均可长期优惠</font></a>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="c_6">蓝色航线阿里云优惠：</td>
+              <td class="c_9">
+                <a href="https://url.cn/53k5XYD?_type=wpa&qidian=true" target="_blank"><font color="red">点击链接联系客服获取阿里云优惠，推荐客户送购物卡，新买续费均可长期优惠</font></a>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="c_6">蓝色航线华为云优惠：</td>
+              <td class="c_9">
+                <a href="https://url.cn/53k5XYD?_type=wpa&qidian=true" target="_blank"><font color="red">点击链接联系客服获取华为云优惠，推荐客户送购物卡，新买续费均可长期优惠</font></a>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="c_6">最新可靠代金券：</td>
+              <td class="c_9">
+                <a href="https://blueblog.lansehangxian.com/api/url.php?name=tengxunyundaijinquan" target="_blank">腾讯云代金券</a>
+                <a href="https://blueblog.lansehangxian.com/api/url.php?name=aliyundaijinquan" target="_blank">阿里云代金券</a>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="box mt30">
+      <div class="boxHead">
+        <h2>程序相关信息</h2>
+      </div>
+      <div class="boxMain">
+        <div class="table tableTdLine">
+          <table width="100%">
+            <tbody>
+  <tr>
+    <td class="c_6" width="250">蓝色航线博客系统当前版本:</td>
+    <td class="c_9">{$version}</td>
+  </tr>
+  <tr>
+    <td class="c_6">蓝色航线博客系统最新版本:</td>
+    <td class="c_9"><span id="new_version">{$new_version}</span> <span id="update_date">{$new_version}</span></td>
+  </tr>
+
+  <tr>
+    <td class="c_6">联系我们:</td>
+    <td class="c_9">电话/企业QQ:<a href="https://url.cn/53k5XYD?_type=wpa&qidian=true" target="_blank">4008334520</a> 关注微信公众号:lansehangxian 可直接联系微信客服</td>
+  </tr>
+  <tr>
+    <td class="c_6">官方主页:</td>
+    <td class="c_9"><a href="https://blueblog.lansehangxian.com" target="_blank">blueblog.lansehangxian.com</a></td>
+  </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="box mt30">
+    <div class="boxHead">
+      <h2>服务器信息：</h2>
+    </div>
+    <div class="boxMain">
+      <div class="table tableTdLine">
+        <table width="100%">
+          <tbody>
+  <tr>
+    <td class="c_6" width="250">WEB SERVER：</td>
+    <td class="c_9">{$SERVER_SOFTWARE}</td>
+  </tr>
+  <tr>
+    <td class="c_6">PHP版本：</td>
+    <td>{$php_version}</td>
+  </tr>
+  <tr>
+    <td class="c_6">MySQL版本：</td>
+    <td class="c_9">{$mysql_version}</td>
+  </tr>
+  <tr>
+    <td>服务器显示时间：</td>
+    <td class="c_9">{$date}</td>
+  </tr>
+  <tr>
+    <td class="c_6">服务器文件上传允许大小</td>
+    <td class="c_9">{$upload_max_filesize}</td>
+  </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+<!-- {literal} -->
+$(document).ready(function()
+{
+    $.ajax({url:'admin.php?act=get_version',type:'post', dataType:'json',success:show_data});
+	
+});
+
+function show_data(data)
+{
+	$('#new_version').html(data.version);
+	$('#update_date').html(data.notice); 
+}
+<!-- {/literal} -->
+</script>
+
+{include file="footer.html"}

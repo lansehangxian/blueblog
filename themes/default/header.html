@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>{$page_title}</title>
+<meta name="description" content="{$desc}">
+<meta name="description" content="{$keywords}">
+<meta name="generator" content="蓝色航线博客系统 1.0" />
+<meta name="author" content="深圳市蓝色航线科技有限公司" />
+<meta name="copyright" content="蓝色航线博客系统" />
+
+<meta name="renderer" content="webkit">
+<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<link href="{$domain}{$templates_dir}css/common.css" rel="stylesheet">
+<link href="{$domain}{$templates_dir}css/home.css" rel="stylesheet">
+<link href="{$domain}{$templates_dir}css/iconfont.css" rel="stylesheet">
+<script src="{$domain}includes/js/jquery.js"></script>
+
+</head>
+<body>
+
+<div class="head">
+    <div class="k">
+        <div class="headTop">
+            <a href="{$domain}"><h1 class="webTitle">{$blog_name}</h1></a>
+        </div>
+        <div class="nav clearfix">
+            <ul class="navMain">
+                {foreach from=$nav_list item=nav}
+                <li {if $nav.current eq 1}class="active"{/if}><a href="{$nav.content}" title="{$nav.desc}">{$nav.title}</a></li>
+                {/foreach}
+            </ul>
+            <div class="search">
+                <form method="get" id="search_form" action="{$domain}search.php">
+                    <a href="javascript:document:search_form.submit();" class="searchBtn">
+                        <i class="iconfont icon-sousuo"></i></a>
+                    <div class="searchInput"><input type="text" name="s" size="10"></div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="main">
+    <div class="k clearfix">
+
+  {include file="sidebar.html"} 

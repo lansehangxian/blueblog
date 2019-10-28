@@ -1,0 +1,44 @@
+{include file="header.html"}
+<form action="admin.php?act={$type}" method="post">
+
+<div class="p30">
+  <div class="box">
+    <div class="boxHead">
+      <h2>可安装插件列表</h2>
+    </div>
+    <div class="boxMain">
+      <div class="table">
+        <table width="100%">
+          <thead>
+
+          <tr>
+            <th>导航栏标题</th>
+            <th>导航栏URL</th>
+            <th>排序</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          {foreach from=$nav_list item=nav}
+  <tr>
+    <td>{$nav.title}</td>
+    <td>{$nav.content}</td>
+    <td><input name="sort[{$nav.id}][]" type="text" value="{$nav.sort}" size="5" /></td>
+    <td><a href="admin.php?act=edit_nav&id={$nav.id}" >编辑</a> | <a href="admin.php?act=del_nav&id={$nav.id}" >删除</a> </td>
+  </tr>
+  {/foreach}
+    <tr>
+    <td colspan="4"><input  class="btn bC b1" type="submit" name="button" id="button" value="修改排序" /></td>
+    </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+</form>
+
+  </div>
+  {include file="page.html"}
+</div>
+</div>
+{include file="footer.html"}

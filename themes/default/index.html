@@ -1,0 +1,35 @@
+{include file="header.html"}
+{*日志部分*}
+
+<div class="content">
+    {if $notice != ''}
+    <div class="box"><div class="articlePad">{$notice}</div></div>
+    {/if}
+
+  <div class="box {if $notice != ''}mt30{/if}">
+  <div class="articlePad">
+    {foreach from=$blog_list item=blog}
+    <div class="articleBox">
+      <div class="articleHead">
+        <h3 class="articleTitle"><a href="{$blog.url}" >{if $blog.is_top eq 1}[置顶]{/if}{$blog.title}</a></h3>
+        <p class="f12 c_c pt5">发表者：{$blog.user_name} <a href="{$blog.cat_url}">分类：{$blog.cat_name}</a> 发表于：{$blog.add_time} 阅读[{$blog.views}] 评论[{$blog.comments}] Tags：{$blog.tags}</p>
+        <p class="f12 c_c pt5"></p>
+      </div>
+<!--      <div class="articlePic">
+        <a href="view.html"><img src="img/p1.jpg" /></a>
+      </div>-->
+      <div class="articleText">
+        {$blog.description}
+        <br />
+        <a href="{$blog.url}">[阅读全文...]</a>
+      </div>
+    </div>
+    {/foreach}
+  </div>
+</div>
+  {include file="page.html"}
+
+</div>
+
+
+{include file="footer.html"}

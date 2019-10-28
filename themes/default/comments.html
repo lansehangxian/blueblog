@@ -1,0 +1,49 @@
+<div class="commentList">
+{foreach from=$comments_list item=comment key=key}
+<div class="commentListBox" id="box-{$comment.comment_id}">
+
+
+
+
+
+    <div class="commentListFoot clearfix">
+        <span class="fr commentListLink">
+										<a href="javascript:replay({$comment.comment_id});" rel="nofollow" id="replay-{$comment.comment_id}"><i class="iconfont icon-pinglunshu"></i></a>
+                                         <a href="mailto:{$comment.email}" target="_blank"><i class="iconfont icon-email"></i></a>
+										<a href="{$comment.home}"><i class="iconfont icon-network"></i></a>
+        </span>
+        <div class="f12 c_c">
+            <b class="c_3 f18">{$key}</b>&nbsp;楼，{$comment.user_name} {if $comment.user_id eq 0}(未注册用户){/if}  发表于 {$comment.add_time}
+        </div>
+    </div>
+
+
+    {if $comment.children}
+        {foreach from=$comment.children2 item=children}
+        <div class="commentQuote">
+        <div class="f12 c_c">
+                引用{$children.user_name} 发表于的评论:{$children.add_time}
+        </div>
+        {/foreach}
+            {foreach from=$comment.children item=children}
+            <div class="commentListMain">
+                {$children.content}
+            </div>
+            </div>
+        {/foreach}
+    {/if}
+
+
+    <div class="commentListMain">
+        {$comment.content}
+    </div>
+</div>
+{/foreach}
+</div>
+{if $page_count>1}
+<div class="paging">
+    {foreach from=$page_arr item=page}
+    <a class="pagingBtn {if $pg eq $page.value}active{/if}" href="javascript:page({$page.value});" >{$page.name}</a>
+    {/foreach}
+</div>
+{/if}

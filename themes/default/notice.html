@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <title>跳转提示</title>
+    <meta http-equiv="refresh" content="2;URL={$new_url}">
+    <link href="{$domain}{$templates_dir}css/common.css" rel="stylesheet">
+    <link href="{$domain}{$templates_dir}css/home.css" rel="stylesheet">
+    <link href="{$domain}{$templates_dir}css/iconfont.css" rel="stylesheet">
+    <script src="{$domain}includes/js/jquery.js"></script>
+</head>
+<body>
+
+<div class="loginbody">
+    <div class="loginMain">
+        <div class="loginContent tc">
+            <img src="{$domain}{$templates_dir}images/{$noticetype}" />
+            <p class="pt10">{$msg}，正在跳转...</p>
+            <div class="mt30">
+                <a href="javascript:history.go(-1);" class="btn btnBlock">上一页</a>
+            </div>
+            <div class="mt10">
+                <a href="{$domain}" class="btn btnBlock">首 页</a>
+            </div>
+            <div class="mt10">
+                <a href="{$new_url}" class="btn btnBlock">跳 转</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- {literal} -->
+
+<script>
+    $(function(){
+        var w_h = $(window).height()-184;
+        $('.loginbody').css({'minHeight':w_h})
+    });
+    $(document).ready(function () {
+        var w_h = $(window).height()-184,
+            b_h = $('.loginMain').height(),
+            m_t = (w_h - b_h)/2;
+        if(m_t<20){
+            m_t =20
+        }
+        $('.loginbody').css({'paddingTop':m_t})
+    });
+</script>
+<!-- {/literal} -->
+
+</body>
+</html>

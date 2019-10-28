@@ -1,0 +1,45 @@
+{include file="header.html"}
+
+<form action="admin.php?act={$type}" method="post">
+ <div class="p30">
+  <div class="box">
+    <div class="boxHead">
+      <h2>添加导航</h2>
+    </div>
+
+    <div class="boxMain">
+      <ul class="fromRow fromRowLine">
+        <li class="left">导航标题</li>
+        <li class="right"><input class="inputText inputBlock"  name="module_title" type="text" id="module_title" value="{$module.title}" /></li>
+      </ul>
+      <ul class="fromRow fromRowLine">
+        <li class="left">排序</li>
+        <li class="right"><input class="inputText inputBlock"  name="sort" type="text" id="sort" value="{$sort}" /></li>
+      </ul>
+      <ul class="fromRow fromRowLine">
+        <li class="left">URL</li>
+        <li class="right"><input class="inputText inputBlock"  name="module_content" type="text" id="module_content" value="{$module.content}" size="50" /></li>
+      </ul>
+      <ul class="fromRow fromRowLine">
+        <li class="left">描述</li>
+        <li class="right"><textarea class="inputBlock textarea"  name="module_desc" cols="50" rows="5" id="module_desc">{$module.desc}</textarea></li>
+      </ul>
+      <ul class="fromRow fromRowLine">
+        <li class="left"></li>
+        <li class="right">
+    <input name="id" type="hidden" value="{$id}" />
+    
+    <!--{if $setup_type eq 1}-->
+    <input type="submit"  class="btn bC b1" name="button" id="button" value="添加" />
+    <!--{else}-->
+    <input type="submit"  class="btn bC b1" name="button" id="button" value="编辑" />
+    <!--{/if}-->
+        </li>
+      </ul>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+{include file="footer.html"}

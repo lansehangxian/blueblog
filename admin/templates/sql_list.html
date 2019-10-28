@@ -1,0 +1,48 @@
+{include file="header.html"}
+<div class="p30">
+    <div class="box">
+        <div class="boxHead">
+            <h2>数据恢复</h2>
+        </div>
+        <div class="boxMain">
+<form action="admin.php?act={$type}" method="post">
+    <ul class="fromRow fromRowLine">
+        <li class="left">请选择用作恢复数据库的sql文件</li>
+        <li class="right">
+      <p>请选择用作恢复数据库的sql文件：<br />
+      <!--{foreach from=$sql item=file}-->
+          <input name="sql" type="radio" value="{$file}"/>{$file} <a href="/home/backup/{$file}">下载</a> | <a href="admin.php?act=del_sql_file&file={$file}">删除</a>
+        <br />
+      <!--{/foreach}-->
+      </p>
+
+        </li>
+    </ul>
+    <ul class="fromRow fromRowLine">
+        <li class="left">&nbsp;</li>
+        <li class="right">
+      <input   class="btn bC b1" type="submit" name="button" id="button" value="恢复" /></li>
+    </ul>
+</form>
+
+<form enctype="multipart/form-data" action="admin.php?act={$type}&upload=1" method="POST">
+    <ul class="fromRow fromRowLine">
+        <li class="left">或直接上传蓝色航线博客系统备份文件恢复</li>
+        <li class="right">
+
+      <p>请上传备份文件：<br />
+      <input  type="file" name="sqlfile" />
+      </p>
+        </li>
+    </ul>
+    <ul class="fromRow fromRowLine">
+        <li class="left">&nbsp;</li>
+        <li class="right"><input   class="btn bC b1" type="submit" name="button" id="button" value="恢复" /></li>
+    </ul>
+ </form>
+
+        </div>
+    </div>
+</div>
+</div>
+{include file="footer.html"}

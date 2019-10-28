@@ -1,0 +1,41 @@
+<div id="sidebar" class="side"> 
+<div class="box"><div class="boxHead"><h2 class="boxTitle">系统导航</h2> </div> 
+<div class="boxMain"><div class="list">
+{insert name='member_info'}</div></div></div><div class="box mt30"><div class="boxHead"><h2 class="boxTitle">日志分类</h2> </div> 
+<div class="boxMain"><div class="list">
+        <ul>
+		{foreach from=$cat item=cat_val}
+			<li><a href={$cat_val.url} title={$cat_val.cat_desc}>{$cat_val.cat_name}</a></li>
+			{if $cat_val.children}
+     		  	{foreach from=$cat_val.children item=children}
+     		  	<li class="children"><a href={$children.url} title={$children.cat_desc}>{$children.cat_name}</a></li>
+      		    {/foreach}
+  			{/if}
+		{/foreach}
+		</ul></div></div></div><div class="box mt30"><div class="boxHead"><h2 class="boxTitle">日志归档</h2> </div> 
+<div class="boxMain"><div class="list">
+		<ul>
+		{foreach from=$archives item=archives_val key=key}
+			<li><a href={$archives_val.url}>{$archives_val.data}</a></li>
+		{/foreach}
+		</ul></div></div></div><div class="box mt30"><div class="boxHead"><h2 class="boxTitle">友情链接</h2> </div> 
+<div class="boxMain"><div class="list">
+        <ul>
+		{foreach from=$link_list item=link}
+			<li><a href={$link.url} title={$link.desc}>{$link.title}</a></li>
+		{/foreach}
+		</ul></div></div></div><div class="box mt30"><div class="boxHead"><h2 class="boxTitle">最新文章</h2> </div> 
+<div class="boxMain"><div class="list">
+
+        <ul>
+		{foreach from=$new_article item=new_article_val}
+			<li><a href={$new_article_val.url} title={$new_article_val.title}>{$new_article_val.title}</a></li>
+		{/foreach}
+		</ul></div></div></div><div class="box mt30"><div class="boxHead"><h2 class="boxTitle">最新评论</h2> </div> 
+<div class="boxMain"><div class="list">
+
+        <ul>
+		{foreach from=$new_comment item=val}
+			<li>{$val.user_name} 说<a href={$val.url} title="{$val.user_name}于{$val.add_time}在{$val.title}发布评论{$val.content}">{$val.content}</a></li>
+		{/foreach}
+		</ul></div></div></div></div>

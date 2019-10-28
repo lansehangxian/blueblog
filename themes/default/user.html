@@ -1,0 +1,41 @@
+{include file="header.html"}
+
+{*日志部分*}
+<div class="content">
+
+    {if $notice != ''}
+    <div class="box"><div class="articlePad">{$notice}</div></div>
+    {/if}
+
+    <div class="box {if $notice != ''}mt30{/if}">
+        <div class="boxHead">
+            <h2 class="boxTitle">修改个人信息</h2>
+        </div>
+        <div class="boxMain">
+            <div class="p20">
+                <form action="user.php?act=edit_profile" method="post" name="user_reg" id="user_reg">
+                    <div class="loginFromRow">
+                        <input class="inputText" name="name" type="text" id="name" value="{$user.user_name}" disabled />
+                    </div>
+                    <div class="loginFromRow">
+                        <input class="inputText" type="password" name="password" id="password" />
+                        <div class="pt5 f12">(密码如果不需要修改，请保留为空)</div>
+                    </div>
+                    <div class="loginFromRow">
+                        <input class="inputText" name="email" type="text" id="email" value="{$user.email}" size="50" />
+                        <div class="pt5 f12">(E-MAIL)</div>
+                    </div>
+                    <div class="loginFromRow">
+                        <input class="inputText" name="home" type="text" id="home" value="{$user.home}" size="50" />
+                        <div class="pt5 f12">(个人主页)</div>
+                    </div>
+                    <div class="loginFromRow">
+                        <input class="btn bC b1"  name="button" type="submit" class="button_all" id="button" value="提交修改" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="footer.html"}

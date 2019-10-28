@@ -1,0 +1,35 @@
+{include file="header.html"}
+<div class="p30">
+  <div class="box">
+    <div class="boxHead">
+      <h2>可安装边栏插件</h2>
+    </div>
+    <div class="boxMain">
+      <div class="table">
+        <table width="100%">
+          <thead>
+
+          <tr>
+            <th>模块</th>
+            <th>描述</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+  {foreach from=$modules item=sidebar}
+  <tr>
+    <td>{$sidebar.title}</td>
+    <td>{$sidebar.desc}</td>
+    <td><a href="admin.php?act=setup_sidebar&id={$sidebar.file}" >安装</a> </td>
+  </tr>
+  {/foreach}
+  </tbody>
+</table>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+{include file="footer.html"}

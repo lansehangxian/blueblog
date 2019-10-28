@@ -1,0 +1,134 @@
+{include file="header.html"}
+
+
+<form action="admin.php?act={$type}" method="post">
+
+  <div class="p30">
+    <div class="box">
+      <div class="boxHead">
+        <h2>添加页面</h2>
+      </div>
+
+      <div class="boxMain">
+
+
+
+        <ul class="fromRow fromRowLine">
+          <li class="left">页面标题</li>
+          <li class="right"><input type="text" class="inputText inputBlock"  name="title" id="title" value="{$page.title}" /></li>
+        </ul>
+        <ul class="fromRow fromRowLine">
+          <li class="left">页面描述</li>
+          <li class="right"><textarea name="description" class="textarea inputBlock"  id="description" rows="10" style="width:98%">{$page.desc}</textarea></li>
+        </ul>
+        <ul class="fromRow fromRowLine">
+          <li class="left">页面内容</li>
+          <li class="right">
+	<div id="auto_copy" style="font-size: 13px;font-family: verdana,arial; color:#FF0000;"></div>
+
+            <script src="../includes/tinymce/tinymce.min.js"></script>
+            <!-- {literal} -->
+            <script>
+              tinymce.init({
+                selector:'#editor',
+                language: 'zh_CN',
+                plugins: 'print preview fullpage powerpaste searchreplace autolink directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount tinymcespellchecker a11ychecker imagetools textpattern help formatpainter permanentpen pageembed tinycomments mentions linkchecker',
+                toolbar: 'styleselect table  link media image  bold italic alignleft aligncenter alignright bullist numlist outdent indent code fullscreen preview ',
+                height: 500,
+                images_upload_url: 'admin.php?act=upload&type=img',
+                autosave_interval: '20s',
+                image_title: false, //关闭图片标题
+                automatic_uploads: true, //开启点击图片上传时，自动进行远程上传操作
+                images_upload_handler: function (blobInfo, success, failure) {
+                  var xhr, formData;
+                  xhr = new XMLHttpRequest();
+                  xhr.withCredentials = false;
+                  xhr.open('POST', 'admin.php?act=upload&type=img');
+                  xhr.onload = function() {
+                    var json;
+                    if (xhr.status < 200 || xhr.status >= 300) {
+                      failure('HTTP Error: ' + xhr.status);
+                      return;
+                    }
+                    json = JSON.parse(xhr.responseText);
+                    if (!json || typeof json.location != 'string') {
+                      failure('Invalid JSON: ' + xhr.responseText);
+                      return;
+                    }
+                    success(json.location);
+                  };
+                  formData = new FormData();
+                  formData.append('file', blobInfo.blob());
+                  xhr.send(formData);
+                },
+                file_picker_types: 'file',
+                //上传文件
+                file_picker_callback: function (cb, value, meta) {
+                  var input = document.createElement('input');
+                  input.setAttribute('type', 'file');
+                  input.onchange = function(){
+                    let file = this.files[0];
+                    let xhr, formData;
+                    xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'admin.php?act=upload&type=file');
+                    xhr.withCredentials = self.credentials;
+                    xhr.onload = function () {
+                      let json;
+                      if (xhr.status < 200 || xhr.status >= 300) {
+                        failure('HTTP Error: ' + xhr.status);
+                        return;
+                      }
+                      json = JSON.parse(xhr.responseText);
+                      if (!json || typeof json.location != 'string') {
+                        alert('Invalid JSON: ' + xhr.responseText);
+                        return;
+                      }
+                      cb(json.location);
+                    };
+                    formData = new FormData();
+                    formData.append('file', file);
+                    xhr.send(formData);
+                  }
+                  input.click();
+                }
+              });
+
+            </script>
+            <!-- {/literal} -->
+            <textarea id="editor" name="editor">{$page.content}</textarea>
+
+          </li>
+        </ul>
+        <ul class="fromRow fromRowLine">
+          <li class="left"></li>
+          <li class="right"><input  class="btn bC b1"  type="hidden" name="id" id="id" value="-2" /><input type="submit" name="button" id="button" value="提交" /></li>
+    </ul>
+  </table>
+</form>
+</p>
+
+<script type="text/javascript">
+<!-- {literal} -->
+
+var plugins={
+	Code:{c:'btnCode',t:'插入代码',h:1,e:function(){
+		var _this=this;
+		var htmlCode='<div>插入代码</div><div><textarea id="xheCodeValue" wrap="soft" spellcheck="false" style="width:300px;height:100px;" /></div><div style="text-align:right;"><input type="button" id="xheSave" value="确定" /></div>';			var jCode=$(htmlCode),jType=$('#xheCodeType',jCode),jValue=$('#xheCodeValue',jCode),jSave=$('#xheSave',jCode);
+		jSave.click(function(){
+			_this.loadBookmark();
+			_this.pasteHTML("<p class=\"code\" >" + jValue.val() + "</p><br />");
+			_this.hidePanel();
+			return false;
+		});
+		_this.showDialog(jCode);
+	}}
+}
+var editor=$('#editor').xheditor({plugins:plugins,loadCSS:'<style>body  {font-family:"Arial", "Verdana";font-size:12px;margin: 0;}.code{margin: 5px 0;padding: 10px;text-align: left;display: block;overflow: auto;font-size:20px;background: #FAFAFA;border: 1px solid #f2f2f2;font: 500 1em/1.5em "Lucida Console", "courier new", monospace ;}</style>',tools:'Cut,Copy,Paste,Pastetext,SelectAll,Removeformat,|,Fontface,FontSize,Bold,FontColor,BackColor,|,Img,Flash,Media,Link,Emot,Unlink,|,Code,Preview,btnCode,Fullscreen,Source',skin:'default',upLinkUrl:'admin.php?act=upload&type=file',upImgUrl:'admin.php?act=upload&type=img',upFlashUrl:'admin.php?act=upload&type=flash',upFlashExt:'swf,flv',upMediaUrl:'admin.php?act=upload&type=file'});
+var description=$('#description').xheditor({plugins:plugins,loadCSS:'<style>body  {font-family:"Arial", "Verdana";font-size:12px;margin: 0;}.code{margin: 5px 0;padding: 10px;text-align: left;display: block;overflow: auto;font-size:20px;background: #FAFAFA;border: 1px solid #f2f2f2;font: 500 1em/1.5em "Lucida Console", "courier new", monospace ;}</style>',tools:'Cut,Copy,Paste,Pastetext,SelectAll,Removeformat,|,Fontface,FontSize,Bold,FontColor,BackColor,|,Img,Flash,Media,Link,Emot,Unlink,|,Code,Preview,btnCode,Fullscreen,Source',skin:'default',upLinkUrl:'admin.php?act=upload&type=file',upImgUrl:'admin.php?act=upload&type=img',upFlashUrl:'admin.php?act=upload&type=flash',upFlashExt:'swf,flv',upMediaUrl:'admin.php?act=upload&type=file'});
+
+<!-- {/literal} -->
+</script>
+
+
+
+{include file="footer.html"}
