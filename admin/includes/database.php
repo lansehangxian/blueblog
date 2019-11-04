@@ -178,7 +178,7 @@ elseif ($action=='act_re_data')
 	}
 	else 
 	{
-		$file=LSHX_BLOG_ROOT . '/home/backup/' .$_POST['sql'];
+		$file=LSHX_BLOG_ROOT . '/home/backup/' .$file=pathinfo($_POST['sql'],PATHINFO_BASENAME);
 	}
 
 	if (!file_exists($file))
@@ -212,7 +212,7 @@ elseif ($action=='act_re_data')
 
 elseif ($action=='del_sql_file')
 {
-	$file=$_GET['file'];
+    $file=pathinfo($file,PATHINFO_BASENAME);
 	@unlink(LSHX_BLOG_ROOT . '/home/backup/' . $file);
 	sys_message('sql备份文件删除成功',$referer_url);
 }
